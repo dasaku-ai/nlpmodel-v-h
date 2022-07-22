@@ -9,11 +9,11 @@ statsd~=3.3.0
 
 # NLP Packages
 click~=7.1.2
-spacy~=3.0.0 # required for scispacy 0.4.0
-scispacy~=0.4.0
+#spacy~=3.0.0 # required for scispacy 0.4.0
+#scispacy~=0.4.0
 wheel
 
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0.tar.gz
+#https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0.tar.gz
 
 # Scispacy models
 # A full spaCy pipeline for biomedical data with a ~100k vocabulary.
@@ -28,7 +28,7 @@ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0
 # A spaCy NER model trained on the JNLPBA corpus.
 #https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_jnlpba_md-0.4.0.tar.gz
 # A spaCy NER model trained on the BC5CDR corpus.
-https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bc5cdr_md-0.4.0.tar.gz
+#https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bc5cdr_md-0.4.0.tar.gz
 # A spaCy NER model trained on the BIONLP13CG corpus.
 # https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
 
@@ -36,7 +36,7 @@ chemdataextractor==1.3.0
 
 Inflector==3.0.1
 
-pydantic~=1.7.1
+pydantic~=1.7.4
 aioredis[hiredis]==2.0.0
 requests~=2.24.0
 pytest

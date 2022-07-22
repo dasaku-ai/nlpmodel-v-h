@@ -2,7 +2,7 @@
 # IBM Research Zurich Smart Annotator Licensed Internal Code
 # (C) Copyright IBM Corp. 2017
 # ALL RIGHTS RESERVED
-
+"""
 import logging
 from typing import Optional, List, Dict
 
@@ -177,3 +177,5 @@ class ScispacyBiomedAnnotator:
         #print("Table entities returned from 'annotate_entities_table': ")
         #pprint.pprint(table_entities)  
         return table_entities
+
+"""
