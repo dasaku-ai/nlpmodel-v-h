@@ -62,10 +62,6 @@ def Pattern_generation(word):
     wordlist = list(set(wordlist))
     return wordlist
 
-
-
-
-
 def RegValueAnnotator(paragraph):
     value_pattern = '(([+\-]?)\s*(((10)\-?(\s+|(\$?\^))\s*(\$\^)?\{?\s*([+\-])?\s*(\$\^)?\{?\s*(\d+)\}?\$?)|(((\d+\.?\d*)|(\.\d+)|(?<![a-zA-Z])(e|E)\-?\^?(?![a-zA-Z]))(\s*(E|e|((\s|\*|X|x|×|((\$_{)?(GLYPH<[A-Z]+\d+>(}\$)?)))\s*10))\s*\-?\^?\s*(\$\^)?\{?\s*([+\-]?)\s*(\$\^)?\{?\s*(\d+)\}?\$?)?)))((( |to|and|\/|-|,)+(?=\d)))*'
     exlist = []
@@ -79,7 +75,6 @@ def RegValueAnnotator(paragraph):
     exlist = sorted(exlist)
     valuelist = revaluelist(connectlist(exlist))
     return valuelist
-
 
 def RegChemAnnotator(paragraph):
     exlist = []
@@ -216,7 +211,7 @@ def RegChemAnnotator(paragraph):
 
 def RegValueUnitAnnotator(paragraph):
     value_pattern = '(([+\-]?)\s*(((10)\-?(\s+|(\$?\^))\s*(\$\^)?\{?\s*([+\-])?\s*(\$\^)?\{?\s*(\d+)\}?\$?)|(((\d+\.?\d*)|(\.\d+)|(?<![a-zA-Z])(e|E)\-?\^?(?![a-zA-Z]))(\s*(E|e|((\s|\*|X|x|×|((\$_{)?(GLYPH<[A-Z]+\d+>(}\$)?)))\s*10))\s*\-?\^?\s*(\$\^)?\{?\s*([+\-]?)\s*(\$\^)?\{?\s*(\d+)\}?\$?)?)))((( |to|and|\/|-|,)+(?=\d)))*'
-    unit_pattern = '(?<=[\d\$])\s?((f|p|n|(u|μ)|m|c|d|k|M|G|P)?(mol\s*CO2|mol\s*N|t\s*i\s*m\s*e\s*s|p\s*e\s*r\s*c\s*e\s*n\s*t\s*a\s*g\s*e|w\s*e\s*i\s*g\s*h\s*t|v\s*o\s*l\s*u\s*m\s*e|a\s*t\s*o\s*m|h\s*o\s*u\s*r|m\s*i\s*n|s\s*e\s*c|v\s*o\s*l|p\s*p\s*m|m\s*o\s*l|c\s*p\s*s|c\s*a\s*t|(o\s*h\s*m|Ω)|w\s*t|P\s*a|e\s*V|h|H|s|C|K|m|l|L|J|g|Å|θ|%|°|℃|V|A)+([\^\/\_\-\+\d\s\$\{\}])*)+((?=to)|(?![a-z]))'
+    unit_pattern = '(?<=[\d\$])\s?((f|p|n|(u|μ)|m|c|d|k|M|G|P)?(mol\s*CO2|mol\s*N|t\s*i\s*m\s*e\s*s|p\s*e\s*r\s*c\s*e\s*n\s*t\s*a\s*g\s*e|w\s*e\s*i\s*g\s*h\s*t|v\s*o\s*l\s*u\s*m\s*e|a\s*t\s*o\s*m|h\s*o\s*u\s*r|m\s*i\s*n|s\s*e\s*c|v\s*o\s*l|p\s*p\s*m|m\s*o\s*l|c\s*p\s*s|c\s*a\s*t|(o\s*h\s*m|Ω)|w\s*t|P\s*a|e\s*V|h|H|s|C|K|cP|W|m|l|L|J|g|Å|θ|%|°|℃|V|A)+([\^\/\_\-\+\d\s\$\{\}\·\(\)])*)+((?=to)|(?![a-z]))'
     pattern_re = re.compile(unit_pattern)
     parser = pattern_re
     regex = parser.finditer(paragraph)
@@ -491,7 +486,7 @@ def ChemDataAnnotator(paragraph):
     return exlist
 
 def RegUnitAnnotator(paragraph):
-    unit_pattern = '(?<=[\d\$\/\(\s\[])\s?((f|p|n|(u|μ)|m|c|d|k|M|G|P)?(mol\s*CO2|mol\s*N|t\s*i\s*m\s*e\s*s|p\s*e\s*r\s*c\s*e\s*n\s*t\s*a\s*g\s*e|w\s*e\s*i\s*g\s*h\s*t|v\s*o\s*l\s*u\s*m\s*e|a\s*t\s*o\s*m|h\s*o\s*u\s*r|m\s*i\s*n|s\s*e\s*c|v\s*o\s*l|p\s*p\s*m|m\s*o\s*l|c\s*p\s*s|c\s*a\s*t|(o\s*h\s*m|Ω)|w\s*t|P\s*a|e\s*V|h|H|s|C|K|m|l|L|J|g|Å|θ|%|°|℃|V|A)+([\^\/\_\-\+\d\s\$\{\}])*)+((?=to)|(?![a-z]))'
+    unit_pattern = '(?<=[\d\$\/\(\s\[])\s?((f|p|n|(u|μ)|m|c|d|k|M|G|P)?(mol\s*CO2|mol\s*N|t\s*i\s*m\s*e\s*s|p\s*e\s*r\s*c\s*e\s*n\s*t\s*a\s*g\s*e|w\s*e\s*i\s*g\s*h\s*t|v\s*o\s*l\s*u\s*m\s*e|a\s*t\s*o\s*m|h\s*o\s*u\s*r|m\s*i\s*n|s\s*e\s*c|v\s*o\s*l|p\s*p\s*m|m\s*o\s*l|c\s*p\s*s|c\s*a\s*t|(o\s*h\s*m|Ω)|w\s*t|P\s*a|e\s*V|h|H|s|C|K|cP|W|m|l|L|J|g|Å|θ|%|°|℃|V|A)+([\^\/\_\-\+\d\s\$\{\}\·\(\)])*)+((?=to)|(?![a-z]))'
     pattern_re = re.compile(unit_pattern)
     parser = pattern_re
     regex = parser.finditer(paragraph)

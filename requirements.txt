@@ -11,6 +11,9 @@ statsd~=3.3.0
 click~=7.1.2
 spacy~=3.0.0 # required for scispacy 0.4.0
 scispacy~=0.4.0
+wheel
+
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0.tar.gz
 
 # Scispacy models
 # A full spaCy pipeline for biomedical data with a ~100k vocabulary.
