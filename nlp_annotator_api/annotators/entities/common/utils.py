@@ -35,6 +35,46 @@ def RegPropertiesAnnotator(paragraph):
     exlist = sorted(exlist)
     return exlist
 
+def RegAmineAnnotator(paragraph):
+
+    exlist = []
+    dictionary_filename=os.path.join(resources_dir, "amine_resource.json")
+    json_open = open(dictionary_filename, 'r')
+    json_load = json.load(json_open)
+    for jsondata in json_load:
+        wordlist = []
+        words = jsondata['_synonyms'][0:300]
+        words.append(jsondata['_name'])
+        for i, word in enumerate(words):
+            word = re.sub('[^a-zA-Z0-9 \-\(\),\'\"%]', '', word)
+            if not matched(word):
+                word = re.sub('[\(\)]', '', word)
+            if len(word) >= 3:
+                wordlist.extend(Pattern_generation(word))
+        wordlist = list(set(wordlist))
+        pro_pattern = '|'.join(wordlist)
+        parser = re.compile(pro_pattern)
+        regex = parser.finditer(paragraph)
+        for reg in regex:
+            if not reg.group() == '':
+                exlist.append([reg.start(), reg.end(), reg.group(), "amine", jsondata['_name']])
+    exlist = sorted(exlist)
+    return exlist
+
+def matched(str):
+    count = 0
+    for i in str:
+        if i == "(":
+            count += 1
+        elif i == ")":
+            count -= 1
+        if count < 0:
+            return False
+    return count == 0    
+
+
+
+
 def Pattern_generation(word):
     word = Inflector().singularize(word)
     wordlist = []
