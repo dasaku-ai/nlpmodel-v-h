@@ -43,23 +43,30 @@ def RegAmineAnnotator(paragraph):
     json_load = json.load(json_open)
     for jsondata in json_load:
         wordlist = []
-        words = jsondata['_synonyms'][0:300]
+        words = jsondata['_synonyms']
         words.append(jsondata['_name'])
         for i, word in enumerate(words):
-            word = re.sub('[^a-zA-Z0-9 \-\(\),\'\"%]', '', word)
             if not matched(word):
                 word = re.sub('[\(\)]', '', word)
             if len(word) >= 3:
                 wordlist.extend(Pattern_generation(word))
         wordlist = list(set(wordlist))
-        pro_pattern = '|'.join(wordlist)
-        parser = re.compile(pro_pattern)
-        regex = parser.finditer(paragraph)
-        for reg in regex:
-            if not reg.group() == '':
-                exlist.append([reg.start(), reg.end(), reg.group(), "amine", jsondata['_name']])
-    exlist = sorted(exlist)
+
+        for word in wordlist:
+            indexlist = list(find_all(paragraph, word))
+            if not indexlist == []:
+                for index in indexlist:
+                    exlist.append([index, index+len(word), paragraph[index:index+len(word)], "amine", jsondata['_name']])
     return exlist
+
+def find_all(a_str, sub):
+    start = 0
+    while True:
+        start = a_str.find(sub, start)
+        if start == -1: return
+        yield start
+        start += len(sub)
+
 
 def matched(str):
     count = 0
